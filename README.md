@@ -87,7 +87,7 @@ Cindy enforces one hard rule: **schemas can only be extended, never broken.**
 Import the Go package for label constants, transition validation, manifest parsing, review types, and schema safety enforcement:
 
 ```go
-import "github.com/nimsforest/cindy/go"
+import cindy "github.com/nimsforest/cindy/go"
 ```
 
 ```go

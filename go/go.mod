@@ -1,3 +1,3 @@
-module github.com/nimsforest/cindy
+module github.com/nimsforest/cindy/go
 
-go 1.23
+go 1.25.7
