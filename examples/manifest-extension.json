@@ -1,0 +1,18 @@
+{
+  "revision": 1,
+  "responds_to": null,
+  "subjects_affected": ["marketing.sale.completed"],
+  "schema_changes": [
+    {
+      "subject": "marketing.sale.completed",
+      "type": "extension",
+      "fields_added": ["loyalty_tier"],
+      "fields_removed": [],
+      "fields_modified": []
+    }
+  ],
+  "consumers": ["aftersales", "analytics", "notifications"],
+  "risk_self_assessment": "medium",
+  "depends_on": [],
+  "description": "Add loyalty tier to sale completed events"
+}

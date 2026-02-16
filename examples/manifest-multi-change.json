@@ -1,0 +1,25 @@
+{
+  "revision": 1,
+  "responds_to": null,
+  "subjects_affected": ["inventory.stock.updated", "inventory.warehouse.transfer"],
+  "schema_changes": [
+    {
+      "subject": "inventory.stock.updated",
+      "type": "extension",
+      "fields_added": ["warehouse_zone", "shelf_location"],
+      "fields_removed": [],
+      "fields_modified": []
+    },
+    {
+      "subject": "inventory.warehouse.transfer",
+      "type": "new",
+      "fields_added": ["transfer_id", "from_warehouse", "to_warehouse", "quantity", "sku"],
+      "fields_removed": [],
+      "fields_modified": []
+    }
+  ],
+  "consumers": ["fulfillment", "analytics", "billing"],
+  "risk_self_assessment": "medium",
+  "depends_on": [],
+  "description": "Add warehouse zone tracking and inter-warehouse transfer events"
+}

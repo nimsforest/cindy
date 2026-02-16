@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nimsforest/cindy/schema/manifest.schema.json",
+  "title": "Cindy Manifest",
+  "description": "Schema for .cindy/manifest.json — the change manifest used by the Cindy agentic CI/CD protocol.",
+  "type": "object",
+  "required": [
+    "revision",
+    "responds_to",
+    "subjects_affected",
+    "schema_changes",
+    "consumers",
+    "risk_self_assessment",
+    "depends_on",
+    "description"
+  ],
+  "properties": {
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Revision counter. Starts at 1, increments with each resubmission."
+    },
+    "responds_to": {
+      "type": ["string", "null"],
+      "description": "Review ID this revision addresses. Null for first submission."
+    },
+    "subjects_affected": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Event subjects affected by this change."
+    },
+    "schema_changes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/schema_change" },
+      "description": "Schema modifications included in this change."
+    },
+    "consumers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Downstream consumers of the affected subjects."
+    },
+    "risk_self_assessment": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Author's self-assessed risk level."
+    },
+    "depends_on": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Branch names this change depends on being deployed first."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the change."
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "schema_change": {
+      "type": "object",
+      "required": ["subject", "type", "fields_added", "fields_removed", "fields_modified"],
+      "properties": {
+        "subject": {
+          "type": "string",
+          "description": "The event subject being modified."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["extension", "new"],
+          "description": "Whether this extends an existing subject or introduces a new one."
+        },
+        "fields_added": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "New fields added to the schema."
+        },
+        "fields_removed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Fields removed from the schema. Must be empty for safe changes."
+        },
+        "fields_modified": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Fields with type changes. Must be empty for safe changes."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

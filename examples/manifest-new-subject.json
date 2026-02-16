@@ -1,0 +1,18 @@
+{
+  "revision": 1,
+  "responds_to": null,
+  "subjects_affected": ["payments.refund.completed"],
+  "schema_changes": [
+    {
+      "subject": "payments.refund.completed",
+      "type": "new",
+      "fields_added": ["refund_id", "amount", "reason", "customer_id"],
+      "fields_removed": [],
+      "fields_modified": []
+    }
+  ],
+  "consumers": [],
+  "risk_self_assessment": "medium",
+  "depends_on": [],
+  "description": "Introduce refund completed event"
+}
